@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soft Berry — Content Ideas</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F6F1E9; --sand: #E9DFD0; --warm-brown: #8B6B47;
+  --dark-brown: #3D2B1F; --terracotta: #C4714A; --sage: #7A8C6E;
+  --off-white: #FAF8F3; --border: #DDD4C4;
+  --text-dark: #2A1F14; --text-mid: #6B5642; --text-light: #9A8472;
+  --sidebar-w: 260px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--text-dark);overflow:hidden;}
+
+/* ── APP SHELL ── */
+.app{display:flex;height:100vh;}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:var(--sidebar-w);flex-shrink:0;
+  background:var(--dark-brown);
+  display:flex;flex-direction:column;
+  height:100vh;overflow:hidden;
+  transition:width 0.25s;
+}
+.sidebar.collapsed{width:0;}
+
+.sb-header{padding:20px 16px 16px;border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0;}
+.sb-brand{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);font-weight:600;line-height:1.1;white-space:nowrap;}
+.sb-brand-sub{font-size:10px;color:rgba(246,241,233,0.4);letter-spacing:0.12em;text-transform:uppercase;margin-top:2px;}
+
+.sb-new-btn{
+  margin:12px 12px 0;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:10px;border-radius:8px;
+  border:1px solid rgba(255,255,255,0.15);
+  background:transparent;color:rgba(246,241,233,0.75);
+  cursor:pointer;font-size:12px;font-weight:500;
+  font-family:'DM Sans',sans-serif;
+  transition:all 0.15s;white-space:nowrap;
+}
+.sb-new-btn:hover{background:rgba(255,255,255,0.07);color:var(--cream);}
+
+.sb-section-label{
+  font-size:10px;letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(246,241,233,0.3);padding:16px 16px 6px;white-space:nowrap;
+  flex-shrink:0;
+}
+
+.sb-list{flex:1;overflow-y:auto;padding:0 8px 16px;}
+.sb-list::-webkit-scrollbar{width:4px;}
+.sb-list::-webkit-scrollbar-track{background:transparent;}
+.sb-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:4px;}
+
+.sb-item{
+  padding:10px 10px;border-radius:8px;cursor:pointer;
+  margin-bottom:2px;transition:background 0.13s;
+  position:relative;
+}
+.sb-item:hover{background:rgba(255,255,255,0.07);}
+.sb-item.active{background:rgba(196,113,74,0.25);}
+.sb-item-title{font-size:13px;color:var(--cream);line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:400;}
+.sb-item-meta{font-size:11px;color:rgba(246,241,233,0.35);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sb-item-del{
+  position:absolute;right:8px;top:50%;transform:translateY(-50%);
+  opacity:0;font-size:12px;color:rgba(246,241,233,0.4);
+  background:none;border:none;cursor:pointer;padding:4px;
+  transition:opacity 0.13s;
+}
+.sb-item:hover .sb-item-del{opacity:1;}
+.sb-item-del:hover{color:#ff6b6b;}
+
+.sb-empty{padding:24px 16px;text-align:center;color:rgba(246,241,233,0.3);font-size:13px;line-height:1.6;}
+
+.sb-footer{padding:12px 12px;border-top:1px solid rgba(255,255,255,0.08);flex-shrink:0;}
+.sb-clear-btn{width:100%;padding:8px;border-radius:6px;border:none;background:transparent;color:rgba(246,241,233,0.3);cursor:pointer;font-size:11px;font-family:'DM Sans',sans-serif;transition:all 0.13s;}
+.sb-clear-btn:hover{color:rgba(246,241,233,0.6);background:rgba(255,255,255,0.05);}
+
+/* ── MAIN ── */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0;}
+
+/* TOP BAR */
+.topbar{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 24px;
+  background:#fff;border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.toggle-btn{
+  width:34px;height:34px;border-radius:8px;
+  border:1px solid var(--border);background:var(--off-white);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:var(--text-mid);transition:all 0.13s;flex-shrink:0;
+}
+.toggle-btn:hover{border-color:var(--warm-brown);color:var(--warm-brown);}
+.topbar-title{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--dark-brown);font-weight:500;}
+.topbar-meta{font-size:12px;color:var(--text-light);margin-left:4px;}
+
+/* CONTENT AREA */
+.content-area{flex:1;display:flex;overflow:hidden;}
+
+/* FORM PANEL */
+.form-panel{
+  width:290px;flex-shrink:0;
+  background:#fff;border-right:1px solid var(--border);
+  padding:24px 20px;overflow-y:auto;
+}
+.form-panel::-webkit-scrollbar{width:4px;}
+.form-panel::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+
+.fp-title{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-light);font-weight:500;margin-bottom:16px;}
+
+.field{margin-bottom:18px;}
+.field-label{font-size:12px;font-weight:500;color:var(--text-mid);margin-bottom:5px;display:block;}
+.field-hint{font-size:11px;color:var(--text-light);margin-bottom:7px;line-height:1.4;}
+
+.chip-group{display:flex;flex-wrap:wrap;gap:5px;}
+.chip{
+  padding:5px 11px;border-radius:20px;font-size:12px;cursor:pointer;
+  border:1px solid var(--border);background:var(--off-white);
+  color:var(--text-mid);transition:all 0.13s;user-select:none;white-space:nowrap;
+}
+.chip:hover{border-color:var(--warm-brown);color:var(--warm-brown);}
+.chip.on{background:var(--dark-brown);color:var(--cream);border-color:var(--dark-brown);}
+.chip.on-t{background:var(--terracotta);color:#fff;border-color:var(--terracotta);}
+
+input[type="text"],textarea{
+  width:100%;padding:9px 11px;border:1px solid var(--border);border-radius:8px;
+  font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-dark);
+  background:var(--off-white);outline:none;transition:border-color 0.14s;resize:vertical;
+}
+input:focus,textarea:focus{border-color:var(--warm-brown);}
+
+.hr{height:1px;background:var(--border);margin:18px 0;}
+
+.qty-row{display:flex;align-items:center;gap:10px;}
+.qty-btn{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:var(--off-white);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;color:var(--text-mid);transition:all 0.13s;flex-shrink:0;}
+.qty-btn:hover{border-color:var(--warm-brown);color:var(--warm-brown);}
+.qty-num{font-size:15px;font-weight:500;color:var(--dark-brown);min-width:18px;text-align:center;}
+
+.gen-btn{
+  width:100%;padding:13px;background:var(--terracotta);color:#fff;
+  border:none;border-radius:10px;cursor:pointer;
+  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;
+  transition:all 0.2s;letter-spacing:0.02em;margin-top:4px;
+}
+.gen-btn:hover{background:#b5603b;transform:translateY(-1px);box-shadow:0 5px 18px rgba(196,113,74,0.28);}
+.gen-btn:active{transform:translateY(0);}
+.gen-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;box-shadow:none;}
+
+/* OUTPUT PANEL */
+.output-panel{flex:1;overflow-y:auto;padding:28px 28px;}
+.output-panel::-webkit-scrollbar{width:5px;}
+.output-panel::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+
+/* EMPTY / LOADING */
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:400px;text-align:center;opacity:0;animation:fi 0.5s ease 0.15s forwards;}
+@keyframes fi{to{opacity:1;}}
+.empty-icon{width:64px;height:64px;border-radius:50%;background:var(--sand);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;}
+.empty-title{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--dark-brown);margin-bottom:8px;}
+.empty-body{font-size:13px;color:var(--text-light);max-width:280px;line-height:1.65;}
+
+.loading-state{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;text-align:center;}
+.dots{display:flex;gap:7px;margin-bottom:14px;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--terracotta);animation:bounce 1.1s ease infinite;}
+.dot:nth-child(2){animation-delay:.18s;}.dot:nth-child(3){animation-delay:.36s;}
+@keyframes bounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-9px);}}
+.loading-label{font-size:14px;color:var(--text-mid);}
+.loading-sub{font-size:12px;color:var(--text-light);margin-top:4px;}
+
+/* RESULTS */
+.results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:8px;}
+.results-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--dark-brown);}
+.regen-btn{padding:7px 16px;border-radius:20px;font-size:12px;font-weight:500;border:1px solid var(--border);background:#fff;color:var(--text-mid);cursor:pointer;transition:all 0.13s;font-family:'DM Sans',sans-serif;}
+.regen-btn:hover{border-color:var(--terracotta);color:var(--terracotta);}
+
+.ideas-grid{display:flex;flex-direction:column;gap:14px;}
+
+/* IDEA CARD */
+.idea-card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;animation:su 0.35s ease both;}
+@keyframes su{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+
+.card-top{padding:16px 20px 14px;background:var(--off-white);border-bottom:1px solid var(--border);cursor:pointer;user-select:none;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+.card-top-left{flex:1;min-width:0;}
+.card-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px;}
+.idea-num{font-size:10px;font-weight:500;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;}
+.type-badge{font-size:10px;padding:2px 9px;border-radius:20px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;}
+.type-viral{background:#E4F0DC;color:#355C22;}.type-chaos{background:#FBE9E0;color:#9A3E1E;}
+.type-brand{background:#E0EBF8;color:#1A4F8A;}.type-emotional{background:#F8E8EE;color:#8A2A4E;}
+.type-xhs{background:#F5EAE0;color:#7A4A2A;}.type-founder{background:#EDE8F8;color:#4A2A8A;}
+.plat-badge{font-size:10px;padding:2px 9px;border-radius:20px;background:var(--sand);color:var(--warm-brown);font-weight:500;letter-spacing:.06em;text-transform:uppercase;}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--dark-brown);line-height:1.3;font-weight:600;}
+.card-chevron{font-size:13px;color:var(--text-light);transition:transform .2s;flex-shrink:0;margin-top:2px;}
+.card-chevron.open{transform:rotate(180deg);}
+
+.card-body{padding:18px 20px;display:none;}
+.card-body.open{display:block;}
+
+.section{margin-bottom:16px;}.section:last-child{margin-bottom:0;}
+.slbl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-light);font-weight:500;margin-bottom:6px;}
+.stxt{font-size:13px;color:var(--text-mid);line-height:1.65;}
+
+.hook-box{background:var(--cream);border-left:3px solid var(--terracotta);border-radius:0 8px 8px 0;padding:10px 14px;font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;font-weight:500;color:var(--dark-brown);line-height:1.45;}
+.shots{list-style:none;}
+.shots li{font-size:13px;color:var(--text-mid);line-height:1.5;padding:4px 0 4px 17px;position:relative;border-bottom:1px dashed rgba(221,212,196,0.4);}
+.shots li:last-child{border-bottom:none;}
+.shots li::before{content:'→';position:absolute;left:0;color:var(--terracotta);font-size:11px;top:5px;}
+.caption-box{background:var(--sand);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--text-mid);font-style:italic;line-height:1.65;}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;}
+.tag{font-size:11px;padding:3px 10px;border-radius:20px;background:var(--sand);color:var(--warm-brown);font-weight:500;}
+.edit-box{background:#F3EFE9;border-radius:8px;padding:12px 14px;}
+.edit-box li{font-size:13px;color:var(--text-mid);line-height:1.6;padding-left:14px;position:relative;margin-bottom:3px;}
+.edit-box li:last-child{margin-bottom:0;}
+.edit-box li::before{content:'·';position:absolute;left:3px;color:var(--warm-brown);font-size:15px;line-height:1.2;}
+.why-box{background:rgba(122,140,110,0.09);border:1px solid rgba(122,140,110,0.2);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--sage);font-style:italic;line-height:1.65;}
+.inspired-box{background:rgba(61,43,31,0.04);border:1px solid rgba(61,43,31,0.09);border-radius:8px;padding:9px 13px;font-size:12px;color:var(--text-mid);line-height:1.6;}
+.inspired-box strong{color:var(--warm-brown);}
+.card-hr{height:1px;background:var(--border);margin:14px 0;}
+
+.action-row{display:flex;gap:8px;flex-wrap:wrap;padding:12px 20px;border-top:1px solid var(--border);background:var(--off-white);}
+.act-btn{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;border:1px solid var(--border);background:#fff;color:var(--text-mid);cursor:pointer;transition:all .13s;font-family:'DM Sans',sans-serif;}
+.act-btn:hover{border-color:var(--warm-brown);color:var(--warm-brown);}
+
+/* SAVED SESSION VIEW */
+.session-view-header{
+  display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;
+}
+.session-view-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--dark-brown);}
+.session-view-meta{font-size:12px;color:var(--text-light);}
+.back-btn{padding:7px 14px;border-radius:20px;font-size:12px;border:1px solid var(--border);background:#fff;color:var(--text-mid);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .13s;}
+.back-btn:hover{border-color:var(--terracotta);color:var(--terracotta);}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:24px;right:24px;
+  background:var(--dark-brown);color:var(--cream);
+  padding:10px 18px;border-radius:8px;font-size:13px;
+  opacity:0;transform:translateY(8px);
+  transition:all 0.25s;pointer-events:none;z-index:999;
+}
+.toast.show{opacity:1;transform:translateY(0);}
+
+/* MOBILE */
+@media(max-width:760px){
+  .sidebar{position:fixed;z-index:100;height:100vh;}
+  .sidebar.collapsed{width:0;overflow:hidden;}
+  .form-panel{width:100%;border-right:none;border-bottom:1px solid var(--border);}
+  .content-area{flex-direction:column;}
+  .output-panel{padding:20px 16px;}
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ── SIDEBAR ── -->
+  <div class="sidebar" id="sidebar">
+    <div class="sb-header">
+      <div class="sb-brand">Soft Berry</div>
+      <div class="sb-brand-sub">Content Ideas</div>
+    </div>
+    <button class="sb-new-btn" onclick="newSession()">＋ &nbsp;New Generation</button>
+    <div class="sb-section-label">Past Sessions</div>
+    <div class="sb-list" id="sb-list">
+      <div class="sb-empty">No sessions yet.<br>Generate your first ideas.</div>
+    </div>
+    <div class="sb-footer">
+      <button class="sb-clear-btn" onclick="clearAll()">Clear all history</button>
+    </div>
+  </div>
+
+  <!-- ── MAIN ── -->
+  <div class="main">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <button class="toggle-btn" onclick="toggleSidebar()" title="Toggle sidebar">☰</button>
+      <div class="topbar-title" id="topbar-title">Content Idea Generator</div>
+      <div class="topbar-meta" id="topbar-meta"></div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content-area">
+
+      <!-- FORM PANEL -->
+      <div class="form-panel" id="form-panel">
+        <div class="fp-title">Build your ideas</div>
+
+        <div class="field">
+          <label class="field-label">Service</label>
+          <div class="chip-group" id="g-service">
+            <div class="chip on" data-v="laser engraving">⚡ Engraving</div>
+            <div class="chip" data-v="heat press">🔥 Heat Press</div>
+            <div class="chip" data-v="UV printing">✨ UV Printing</div>
+            <div class="chip" data-v="corporate gifting">🎁 Corporate Gifts</div>
+            <div class="chip" data-v="all services">🎯 All Services</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Content angle</label>
+          <div class="chip-group" id="g-angle">
+            <div class="chip on-t" data-v="ASMR and satisfying process">😌 ASMR</div>
+            <div class="chip" data-v="last-minute chaos and problem solving">⚡ Chaos</div>
+            <div class="chip" data-v="high-value brand showcase">💼 Brand</div>
+            <div class="chip" data-v="personal and emotional gifting">🤍 Emotional</div>
+            <div class="chip" data-v="viral trend format">🔥 Viral</div>
+            <div class="chip" data-v="XHS discovery post bilingual">📍 XHS</div>
+            <div class="chip" data-v="founder POV lifestyle — Shi Ying as the face of Soft Berry">👤 Founder POV</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Platform</label>
+          <div class="chip-group" id="g-platform">
+            <div class="chip on" data-v="TikTok">TikTok</div>
+            <div class="chip" data-v="Xiaohongshu (小红书)">小红书 XHS</div>
+            <div class="chip" data-v="both TikTok and Xiaohongshu">Both</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Tone</label>
+          <div class="chip-group" id="g-tone">
+            <div class="chip on" data-v="raw and authentic">Raw & Real</div>
+            <div class="chip" data-v="premium and elegant">Premium</div>
+            <div class="chip" data-v="fun and energetic">Fun & Hype</div>
+            <div class="chip" data-v="quiet and emotional">Quiet</div>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="field">
+          <label class="field-label">Event context <span style="font-weight:300;color:var(--text-light)">(optional)</span></label>
+          <div class="field-hint">e.g. Shopee activation · luxury brand dinner · walk-in customer</div>
+          <input type="text" id="inp-event" placeholder="Type event details...">
+        </div>
+
+        <div class="field">
+          <label class="field-label">Special notes <span style="font-weight:300;color:var(--text-light)">(optional)</span></label>
+          <textarea id="inp-notes" rows="3" placeholder="e.g. emotional reaction, tight deadline, new service..."></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Number of ideas</label>
+          <div class="qty-row">
+            <button class="qty-btn" onclick="changeQty(-1)">−</button>
+            <span class="qty-num" id="qty-display">5</span>
+            <button class="qty-btn" onclick="changeQty(1)">+</button>
+            <span style="font-size:11px;color:var(--text-light)">max 8</span>
+          </div>
+        </div>
+
+        <button class="gen-btn" id="gen-btn" onclick="generate()">✦ &nbsp;Generate Ideas</button>
+      </div>
+
+      <!-- OUTPUT PANEL -->
+      <div class="output-panel" id="output">
+        <div class="empty-state">
+          <div class="empty-icon">✦</div>
+          <div class="empty-title">Let's make something.</div>
+          <div class="empty-body">Choose your service and angle on the left, then hit Generate. Ideas are saved automatically — find them anytime in the sidebar.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API = ''; // same origin
+
+// ── STATE ──
+let qty = 5;
+let currentSessionId = null;
+let sidebarOpen = true;
+
+// ── INIT ──
+loadSidebar();
+
+// ── SIDEBAR TOGGLE ──
+function toggleSidebar() {
+  sidebarOpen = !sidebarOpen;
+  document.getElementById('sidebar').classList.toggle('collapsed', !sidebarOpen);
+}
+
+// ── QTY ──
+function changeQty(d) {
+  qty = Math.min(8, Math.max(1, qty + d));
+  document.getElementById('qty-display').textContent = qty;
+}
+
+// ── CHIPS ──
+document.querySelectorAll('.chip-group').forEach(g => {
+  g.querySelectorAll('.chip').forEach(c => {
+    c.addEventListener('click', () => {
+      g.querySelectorAll('.chip').forEach(x => x.classList.remove('on','on-t'));
+      c.classList.add('on');
+    });
+  });
+});
+
+function getVal(id) {
+  const el = document.querySelector(`#${id} .chip.on, #${id} .chip.on-t`);
+  return el ? el.dataset.v : '';
+}
+
+// ── NEW SESSION ──
+function newSession() {
+  currentSessionId = null;
+  document.getElementById('topbar-title').textContent = 'Content Idea Generator';
+  document.getElementById('topbar-meta').textContent = '';
+  document.getElementById('output').innerHTML = `
+    <div class="empty-state">
+      <div class="empty-icon">✦</div>
+      <div class="empty-title">Let's make something.</div>
+      <div class="empty-body">Choose your service and angle on the left, then hit Generate.</div>
+    </div>`;
+  document.getElementById('form-panel').style.display = '';
+  document.querySelectorAll('.sb-item').forEach(i => i.classList.remove('active'));
+}
+
+// ── LOAD SIDEBAR ──
+async function loadSidebar() {
+  try {
+    const res = await fetch(`${API}/api/sessions`);
+    const sessions = await res.json();
+    renderSidebar(sessions);
+  } catch(e) { /* offline or cold start */ }
+}
+
+function renderSidebar(sessions) {
+  const list = document.getElementById('sb-list');
+  if (!sessions.length) {
+    list.innerHTML = '<div class="sb-empty">No sessions yet.<br>Generate your first ideas.</div>';
+    return;
+  }
+  list.innerHTML = sessions.map(s => {
+    const date = new Date(s.createdAt);
+    const label = date.toLocaleDateString('en-MY', { day:'numeric', month:'short' }) + ' · ' + date.toLocaleTimeString('en-MY', { hour:'2-digit', minute:'2-digit' });
+    const isActive = s.id === currentSessionId;
+    return `
+      <div class="sb-item ${isActive ? 'active' : ''}" id="sb-${s.id}" onclick="loadSession('${s.id}')">
+        <div class="sb-item-title">${escHtml(s.title)}</div>
+        <div class="sb-item-meta">${s.ideaCount} ideas · ${label}</div>
+        <button class="sb-item-del" onclick="deleteSession(event,'${s.id}')" title="Delete">✕</button>
+      </div>`;
+  }).join('');
+}
+
+// ── LOAD SESSION ──
+async function loadSession(id) {
+  try {
+    const res = await fetch(`${API}/api/sessions/${id}`);
+    const session = await res.json();
+    currentSessionId = id;
+    document.getElementById('topbar-title').textContent = session.title;
+    document.getElementById('topbar-meta').textContent = `· ${session.ideas.length} ideas`;
+    document.getElementById('form-panel').style.display = '';
+    renderResults(session.ideas, session.platform, false);
+    document.querySelectorAll('.sb-item').forEach(i => i.classList.remove('active'));
+    const el = document.getElementById(`sb-${id}`);
+    if (el) el.classList.add('active');
+  } catch(e) { showToast('Could not load session'); }
+}
+
+// ── DELETE SESSION ──
+async function deleteSession(e, id) {
+  e.stopPropagation();
+  try {
+    await fetch(`${API}/api/sessions/${id}`, { method: 'DELETE' });
+    if (currentSessionId === id) newSession();
+    await loadSidebar();
+    showToast('Session deleted');
+  } catch { showToast('Error deleting session'); }
+}
+
+// ── CLEAR ALL ──
+async function clearAll() {
+  if (!confirm('Clear all saved sessions?')) return;
+  try {
+    await fetch(`${API}/api/sessions`, { method: 'DELETE' });
+    newSession();
+    await loadSidebar();
+    showToast('History cleared');
+  } catch { showToast('Error clearing history'); }
+}
+
+// ── GENERATE ──
+async function generate() {
+  const service  = getVal('g-service')  || 'laser engraving';
+  const angle    = getVal('g-angle')    || 'ASMR and satisfying process';
+  const platform = getVal('g-platform') || 'TikTok';
+  const tone     = getVal('g-tone')     || 'raw and authentic';
+  const event    = document.getElementById('inp-event').value.trim();
+  const notes    = document.getElementById('inp-notes').value.trim();
+
+  const btn = document.getElementById('gen-btn');
+  btn.disabled = true; btn.textContent = '⟳  Generating...';
+
+  document.getElementById('output').innerHTML = `
+    <div class="loading-state">
+      <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      <div class="loading-label">Analysing top-performing content across TikTok, XHS & Instagram...</div>
+      <div class="loading-sub">Extracting the best angles for Soft Berry</div>
+    </div>`;
+
+  const systemContext = `You are the senior content strategist for Soft Berry (softberry.co), a Malaysian premium on-site personalisation brand. Shi Ying is the founder — young, creative, warm, premium aesthetic. Services: laser engraving, heat press, UV printing, corporate gifting. Earth-tone visual identity. Target: Malaysian Gen Z 18–25. Goal: drive sales and enquiries.
+
+CROSS-PLATFORM INTELLIGENCE (apply to every idea):
+TikTok winners: (1) ASMR close-up of machine etching metal = 5–10× avg watch time; (2) Founder POV "day in my life" drives higher trust and conversions than brand accounts; (3) "What clients don't see" or "making $X/hour" hooks hit 500k+ in personalisation niche; (4) Quality comparison (cheap vs premium) triggers loss aversion, drives DMs; (5) Last-minute chaos → calm resolution loops viewers and builds reliability trust.
+XHS winners: (1) 好物推荐 geo-tagged discovery posts drive local search traffic; (2) Diary-style personal notes outperform polished ads — 80%+ purchases influenced by peer reviews; (3) Bilingual EN + Simplified Chinese captions capture Malaysian Chinese Gen Z; (4) Long-form captions rewarded — XHS algorithm favours saves/shares; (5) Craftsmanship + emotional gifting content surging — 个性化礼物 searches up 60% YoY.
+Instagram/Global: (1) UV reveal videos (plain → vivid colour under UV) going viral — nobody owns this in Malaysia yet; (2) "She cried when she saw it" emotional reveal = massive shares; (3) Brand client reaction shots build B2B credibility instantly; (4) Founder-face lifestyle content humanises brand and drives enquiries.
+Corporate gifting angle: decision-makers want to see scale, reliability, and premium presentation — content should make them feel "this is what I want for my event".
+
+FOUNDER POV rules: Shi Ying IS the content. Her hands, her voice, her perspective. Lifestyle: arriving at venues, setting up alone before guests, quiet aesthetic moments. Honest founder energy — not corporate, warm and slightly vulnerable like a peer sharing her day.`;
+
+  const prompt = `${systemContext}
+
+Generate exactly ${qty} distinct, creative, scroll-stopping video ideas. Each must vary in format, emotion, and approach.
+
+Settings:
+- Service: ${service}
+- Angle: ${angle}
+- Platform: ${platform}
+- Tone: ${tone}
+${event ? `- Event: ${event}` : ''}
+${notes ? `- Notes: ${notes}` : ''}
+
+RULES: Filmable during real events only. Hooks must work in 3 seconds. Captions sound human not branded. XHS ideas need bilingual captions. Editing notes must be immediately actionable.
+
+Return ONLY a valid JSON array, no markdown, no explanation:
+[{"title":"","type_label":"ASMR/Satisfying|Chaos/Rush|Brand Showcase|Emotional|Viral|XHS-Native|Founder POV","type_class":"type-viral|type-chaos|type-brand|type-emotional|type-xhs|type-founder","hook":"","concept":"","shots":["","","","",""],"caption":"","hashtags":["","","","","","",""],"editing":["","","","",""],"why_it_works":"","inspired_by":""}]`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:8000,
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    const raw = (data.content||[]).map(b=>b.text||'').join('');
+    const ideas = JSON.parse(raw.replace(/```json|```/g,'').trim());
+
+    // Save session
+    const title = `${service} · ${angle}`;
+    const saveRes = await fetch(`${API}/api/sessions`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({ title, service, angle, platform, tone, event, notes, ideas })
+    });
+    const saved = await saveRes.json();
+    currentSessionId = saved.id;
+
+    document.getElementById('topbar-title').textContent = title;
+    document.getElementById('topbar-meta').textContent = `· ${ideas.length} ideas`;
+
+    renderResults(ideas, platform, true);
+    await loadSidebar();
+    showToast('✦ Saved to sidebar');
+
+  } catch(err) {
+    document.getElementById('output').innerHTML = `
+      <div style="background:#FBE9E0;border:1px solid #F0C4AE;border-radius:14px;padding:28px;text-align:center;">
+        <div style="font-size:24px;margin-bottom:10px;">⚠️</div>
+        <div style="font-size:15px;font-weight:500;color:#9A3E1E;margin-bottom:6px;">Couldn't generate ideas</div>
+        <div style="font-size:13px;color:#B05530">Check your internet and try again.<br><small style="opacity:0.6">${err.message}</small></div>
+      </div>`;
+  } finally {
+    btn.disabled = false; btn.textContent = '✦  Generate Ideas';
+  }
+}
+
+// ── RENDER RESULTS ──
+function renderResults(ideas, platform, animate) {
+  const cards = ideas.map((idea, i) => {
+    const delay = animate ? i * 70 : 0;
+    const shots  = (idea.shots||[]).map(s=>`<li>${escHtml(s)}</li>`).join('');
+    const edits  = (idea.editing||[]).map(e=>`<li>${escHtml(e)}</li>`).join('');
+    const hashes = (idea.hashtags||[]).map(h=>`<span class="tag">${escHtml(h)}</span>`).join('');
+    return `
+      <div class="idea-card" style="animation-delay:${delay}ms" id="card-${i}">
+        <div class="card-top" onclick="toggleCard(${i})">
+          <div class="card-top-left">
+            <div class="card-meta">
+              <span class="idea-num">#${i+1}</span>
+              <span class="type-badge ${idea.type_class||'type-viral'}">${escHtml(idea.type_label||'')}</span>
+              <span class="plat-badge">${escHtml(platform||'')}</span>
+            </div>
+            <div class="card-title">${escHtml(idea.title||'')}</div>
+          </div>
+          <span class="card-chevron" id="chev-${i}">▾</span>
+        </div>
+        <div class="card-body" id="body-${i}">
+          <div class="section"><div class="slbl">Hook — First 3 Seconds</div><div class="hook-box">${escHtml(idea.hook||'')}</div></div>
+          <div class="section"><div class="slbl">Concept</div><div class="stxt">${escHtml(idea.concept||'')}</div></div>
+          <div class="card-hr"></div>
+          <div class="section"><div class="slbl">Shot List</div><ul class="shots">${shots}</ul></div>
+          <div class="card-hr"></div>
+          <div class="section"><div class="slbl">Caption</div><div class="caption-box">${escHtml(idea.caption||'')}</div></div>
+          <div class="section"><div class="slbl">Hashtags</div><div class="tags">${hashes}</div></div>
+          <div class="card-hr"></div>
+          <div class="section"><div class="slbl">Editing Brief</div><ul class="edit-box">${edits}</ul></div>
+          <div class="card-hr"></div>
+          <div class="section"><div class="slbl">Why This Works</div><div class="why-box">${escHtml(idea.why_it_works||'')}</div></div>
+          ${idea.inspired_by ? `<div class="section"><div class="slbl">Content Intelligence</div><div class="inspired-box"><strong>Drawn from:</strong> ${escHtml(idea.inspired_by)}</div></div>` : ''}
+        </div>
+        <div class="action-row" id="actions-${i}" style="display:none">
+          <button class="act-btn" onclick="copyCard(${i})">📋 Copy idea</button>
+        </div>
+      </div>`;
+  }).join('');
+
+  document.getElementById('output').innerHTML = `
+    <div class="results-header">
+      <div class="results-title">${ideas.length} ideas ✦</div>
+      <button class="regen-btn" onclick="generate()">↺ Regenerate</button>
+    </div>
+    <div class="ideas-grid">${cards}</div>`;
+
+  if (animate) setTimeout(() => toggleCard(0), 120);
+  else toggleCard(0);
+}
+
+// ── CARD TOGGLE ──
+function toggleCard(i) {
+  const body = document.getElementById(`body-${i}`);
+  const chev = document.getElementById(`chev-${i}`);
+  const acts = document.getElementById(`actions-${i}`);
+  if (!body) return;
+  const open = body.classList.toggle('open');
+  chev && chev.classList.toggle('open', open);
+  acts && (acts.style.display = open ? 'flex' : 'none');
+}
+
+// ── COPY ──
+function copyCard(i) {
+  const card = document.querySelectorAll('.idea-card')[i];
+  if (!card) return;
+  navigator.clipboard.writeText(card.innerText).then(() => {
+    showToast('Copied to clipboard');
+  });
+}
+
+// ── TOAST ──
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ── UTILS ──
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>

@@ -69,4 +69,4 @@ app.delete('/api/sessions', (req, res) => {
 });
 
 const PORT = process.env.PORT || 10000;
-app.listen(PORT, () => console.log(`Soft Berry running on http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Soft Berry v2 running on port ${PORT}`));

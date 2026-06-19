@@ -229,7 +229,7 @@ input:focus,textarea:focus{border-color:var(--terra);}
         <label class="flbl">Number of ideas</label>
         <div class="qty-row">
           <button class="qbtn" onclick="changeQty(-1)">−</button>
-          <span class="qnum" id="qty">5</span>
+         <span class="qnum" id="qty">3</span>
           <button class="qbtn" onclick="changeQty(1)">+</button>
           <span style="font-size:11px;color:var(--tl)">max 8</span>
         </div>
@@ -256,7 +256,7 @@ input:focus,textarea:focus{border-color:var(--terra);}
 <div class="toast" id="toast"></div>
 
 <script>
-let qty=5, sbOpen=true, curId=null;
+let qty=3, sbOpen=true, curId=null;
 
 function toggleSB(){sbOpen=!sbOpen;document.getElementById('sb').classList.toggle('closed',!sbOpen);}
 function changeQty(d){qty=Math.min(8,Math.max(1,qty+d));document.getElementById('qty').textContent=qty;}
